@@ -1,4 +1,5 @@
 from peewee import Model, TextField
+
 from .config import database
 
 
