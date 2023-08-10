@@ -12,12 +12,6 @@ class FungiEnzyme(BaseModel):
     ec_number = TextField()
 
 
-
 # database.connect()
 # database.create_tables([FungiEnzyme])
 # database.close()
-
-
-
-
-
