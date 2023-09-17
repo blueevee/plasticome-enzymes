@@ -16,11 +16,12 @@ class EnzymeMetadata(BaseModel):
     genbank_accession = TextField()
     refseq_accession = TextField()
 
+
 class PlasticTypes(BaseModel):
     plastic_name = TextField()
     acronym = TextField()
 
 
 # database.connect()
-# database.create_tables([FungiEnzyme])
+# database.create_tables([EnzymeMetadata])
 # database.close()
