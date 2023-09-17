@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "plasticome-enzymes"
 version = "0.1.0"
-description = ""
+description = "Server to store enzymes that degrades plastics"
 authors = ["Blueevee <lm.elyn@hotmail.com>"]
 readme = "README.md"
 packages = [{include = "plasticome_enzymes"}]
