@@ -12,8 +12,7 @@ def get_enzyme(ec_number: str):
         if ec_number:
             result, error = search_enzyme_by_ec_number(ec_number)
             if error:
-                # TRATAR QANDO N EXISTE
-                return {'error': str(error)}, 500
+                return {'error': 'enzyme not found'}, 404
             return result, 200
         else:
             return {
@@ -32,13 +31,14 @@ def get_all_enzyme():
         enzyme_list = [
             {
                 'id': enzyme.id,
-                'enzyme': enzyme.enzyme,
+                'enzyme_name': enzyme.enzyme_name,
                 'ec_number': enzyme.ec_number,
                 'article_doi': enzyme.article_doi,
-                'organism_name': enzyme.organism_name,
+                'fungi_name': enzyme.fungi_name,
                 'cazy_family': enzyme.cazy_family,
-                'genbank_accession': enzyme.genbank_accession,
-                'refseq_accession': enzyme.refseq_accession,
+                'protein_sequence': enzyme.protein_sequence,
+                'genbank_assembly_id': enzyme.protein_sequence,
+                'plastic_type': enzyme.plastic_type,
             }
             for enzyme in result
         ]
@@ -55,8 +55,10 @@ def save_enzyme(data: dict):
             'enzyme_name',
             'cazy_family',
             'ec_number',
-            'genbank_accession',
-            'refseq_accession',
+            'protein_sequence',
+            'genbank_assembly_id',
+            'plastic_type',
+            'fungi_name',
         ]
         if all(data.get(field) for field in required_fields):
             result, error = store_enzyme(**data)
@@ -81,8 +83,10 @@ def update_enzyme(enzyme_id: int, data: dict):
             'enzyme_name',
             'cazy_family',
             'ec_number',
-            'genbank_accession',
-            'refseq_accession',
+            'protein_sequence',
+            'genbank_assembly_id',
+            'plastic_type',
+            'fungi_name',
         ]
         formated_data = {
             key: value
