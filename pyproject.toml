@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "plasticome-enzymes"
+name = "plasticome-metadata"
 version = "0.1.0"
-description = "Server to store enzymes that degrades plastics"
+description = "Server to store metadata to plasticome"
 authors = ["Blueevee <lm.elyn@hotmail.com>"]
 readme = "README.md"
-packages = [{include = "plasticome_enzymes"}]
+packages = [{include = "plasticome_metadata"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
