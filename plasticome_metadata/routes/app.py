@@ -1,12 +1,12 @@
 from flask import Flask, request
 from flask_pydantic_spec import FlaskPydanticSpec
 
-from plasticome_enzymes.controllers.enzyme_controller import (
+from plasticome_metadata.controllers.enzyme_controller import (
+    delete_enzyme,
+    get_all_enzyme,
     get_enzyme,
     save_enzyme,
     update_enzyme,
-    get_all_enzyme,
-    delete_enzyme,
 )
 
 server = Flask(__name__)
@@ -16,28 +16,28 @@ spec = FlaskPydanticSpec(
 spec.register(server)
 
 
-@server.get('/find')
+@server.get('/enzyme_find')
 def get_all_enzyme_route():
     return get_all_enzyme()
 
 
-@server.get('/find/<ec_number>')
+@server.get('/enzyme_find/<ec_number>')
 def get_enzyme_route(ec_number):
     return get_enzyme(ec_number)
 
 
-@server.post('/save')
+@server.post('/enzyme_save')
 def save_enzyme_route():
     return save_enzyme(request.json)
 
 
-@server.patch('/update/<int:id>')
+@server.patch('/enzyme_update/<int:id>')
 def update_enzyme_route(id):
     data = request.json
     return update_enzyme(id, data)
 
 
-@server.delete('/delete/<int:id>')
+@server.delete('/enzyme_delete/<int:id>')
 def delete_enzyme_route(id):
     return delete_enzyme(id)
 

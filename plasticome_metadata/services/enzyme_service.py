@@ -1,19 +1,38 @@
-from plasticome_enzymes.models.enzyme_model import FungiEnzyme
+from plasticome_enzymes.models.metadata_enzyme_model import EnzymeMetadata
 
 
-def store_enzyme(enzyme: str, ec_number: str) -> (dict,None):
+def store_enzyme(
+    enzyme_name: str,
+    ec_number: str,
+    article_doi: str,
+    cazy_family: str,
+    genbank_accession: str,
+    refseq_accession: str,
+) -> (dict, None):
     """
     Save an enzyme in the database.
 
     Parameters:
         enzyme (str): The name of the enzyme to be saved.
         ec_number (str): The associated EC number of the enzyme.
+        article_doi (str): DOI of the article where the enzyme was found.
+        cazy_family (str): Family cazy of the enzyme.
+        genbank_accession (str): Genbank accession number.
+        refseq_accession (str): RefSeq accession number.
 
     Returns:
         enzyme (dict): The new enzyme created.
     """
     try:
-        saved_enzyme = FungiEnzyme.create(enzyme=enzyme, ec_number=ec_number)
+        saved_enzyme = EnzymeMetadata.create(
+            enzyme_name=enzyme_name,
+            ec_number=ec_number,
+            article_doi=article_doi,
+            cazy_family=cazy_family,
+            genbank_accession=genbank_accession,
+            refseq_accession=refseq_accession,
+        )
+
         return saved_enzyme.__data__, None
     except Exception as error:
         return None, error
@@ -31,8 +50,8 @@ def search_enzyme_by_ec_number(ec_number: str):
     """
     try:
         enzyme = (
-            FungiEnzyme.select()
-            .where(FungiEnzyme.ec_number == ec_number)
+            EnzymeMetadata.select()
+            .where(EnzymeMetadata.ec_number == ec_number)
             .get()
         )
         return enzyme.__data__, None
@@ -52,9 +71,7 @@ def search_enzyme_by_id(enzyme_id: str):
     """
     try:
         enzyme = (
-            FungiEnzyme.select()
-            .where(FungiEnzyme.id == enzyme_id)
-            .get()
+            EnzymeMetadata.select().where(EnzymeMetadata.id == enzyme_id).get()
         )
         return enzyme.__data__, None
     except Exception as error:
@@ -69,7 +86,7 @@ def search_enzyme():
         enzymes (dict): All the records.
     """
     try:
-        all_enzymes = FungiEnzyme.select()
+        all_enzymes = EnzymeMetadata.select()
         return all_enzymes, None
     except Exception as error:
         return None, error
@@ -87,7 +104,9 @@ def update_enzyme_by_id(enzyme_id: int, data: dict):
         result: Number of altered registers
     """
     try:
-        query = FungiEnzyme.update(**data).where(FungiEnzyme.id == enzyme_id)
+        query = EnzymeMetadata.update(**data).where(
+            EnzymeMetadata.id == enzyme_id
+        )
         result = query.execute()
         return result, None
     except Exception as error:
@@ -106,7 +125,7 @@ def delete_enzyme_by_id(enzyme_id: str):
     """
     try:
 
-        enzyme_to_delete = FungiEnzyme.get(FungiEnzyme.id == enzyme_id)
+        enzyme_to_delete = EnzymeMetadata.get(EnzymeMetadata.id == enzyme_id)
         enzyme_to_delete.delete_instance()
         return True, None
     except Exception as error:

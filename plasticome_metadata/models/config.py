@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 from peewee import PostgresqlDatabase
 
-load_dotenv()
+load_dotenv(override=True)
 
 database = PostgresqlDatabase(
     os.getenv('DATABASE_NAME'),
