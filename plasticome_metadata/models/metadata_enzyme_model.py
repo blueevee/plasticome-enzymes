@@ -12,14 +12,14 @@ class PlasticTypes(BaseModel):
     acronym = CharField()
 
 class EnzymeMetadata(BaseModel):
-    cazy_family = CharField()
-    fungi_name = CharField()
-    ec_number = CharField()
-    protein_sequence = TextField()
-    doi = CharField()
+    cazy_family = CharField(null=True)
+    fungi_name = CharField(null=True)
+    enzyme_name = CharField()
+    ec_number = CharField(null=True)
+    protein_sequence = TextField(null=True)
+    article_doi = CharField(null=True)
+    genbank_assembly_id = CharField(null=True)
     plastic_type = ForeignKeyField(PlasticTypes, backref='associated_enzymes')
-
-#  NOME DO PLASTICO, CAZYME, FUNGO, EC NUMBER, PROTEIN SEQUENCE, DOI ARTIGO))
 
 
 # database.connect()
