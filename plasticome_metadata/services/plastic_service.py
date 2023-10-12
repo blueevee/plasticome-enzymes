@@ -14,7 +14,7 @@ def store_plastic(plastic_name: str, plastic_acronym: str) -> (dict, None):
     """
     try:
         registered_plastic = PlasticTypes.create(
-            plastic_name=plastic_name, plastic_acronym=plastic_acronym
+            plastic_name=plastic_name, acronym=plastic_acronym
         )
         return registered_plastic.__data__, None
     except Exception as error:
