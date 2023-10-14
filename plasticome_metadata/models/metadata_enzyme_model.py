@@ -18,10 +18,13 @@ class EnzymeMetadata(BaseModel):
     ec_number = CharField(null=True)
     protein_sequence = TextField(null=True)
     article_doi = CharField(null=True)
-    genbank_assembly_id = CharField(null=True)
-    plastic_type = ForeignKeyField(PlasticTypes, backref='associated_enzymes')
+    genbank_protein_id = CharField(null=True)
+
+class EnzymePlasticTypes(BaseModel):
+    enzyme_id = ForeignKeyField(EnzymeMetadata, backref='enzyme_plastic_types')
+    plastic_id = ForeignKeyField(PlasticTypes, backref='plastic_associated_enzymes')
 
 
 # database.connect()
-# database.create_tables([PlasticTypes, EnzymeMetadata])
+# database.create_tables([PlasticTypes, EnzymeMetadata, EnzymePlasticTypes])
 # database.close()

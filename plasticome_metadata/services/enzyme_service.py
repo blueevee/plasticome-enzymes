@@ -1,36 +1,56 @@
-from plasticome_enzymes.models.metadata_enzyme_model import EnzymeMetadata
-
+from plasticome_metadata.models.metadata_enzyme_model import EnzymeMetadata
 
 def store_enzyme(
     enzyme_name: str,
-    ec_number: str,
-    article_doi: str,
-    cazy_family: str,
-    genbank_accession: str,
-    refseq_accession: str,
+    article_doi: str= None,
+    cazy_family: str= None,
+    ec_number: str= None,
+    protein_sequence: str= None,
+    genbank_protein_id: str= None,
+    fungi_name: str = None,
 ) -> (dict, None):
-    """
-    Save an enzyme in the database.
 
-    Parameters:
-        enzyme (str): The name of the enzyme to be saved.
-        ec_number (str): The associated EC number of the enzyme.
-        article_doi (str): DOI of the article where the enzyme was found.
-        cazy_family (str): Family cazy of the enzyme.
-        genbank_accession (str): Genbank accession number.
-        refseq_accession (str): RefSeq accession number.
-
-    Returns:
-        enzyme (dict): The new enzyme created.
     """
+    The function `store_enzyme` stores enzyme metadata in a database and returns
+    the saved enzyme data or an error if the operation fails.
+
+    :param enzyme_name: The name of the enzyme
+    :param fungi_name: The `fungi_name` parameter is a string that represents the
+    name of the fungi associated with the enzyme
+    :param article_doi: The article DOI is a unique identifier for a scientific
+    article. It stands for "Digital Object Identifier" and is used to provide a
+    persistent link to the article online
+    :param cazy_family: The `cazy_family` parameter represents the CAZy
+    (Carbohydrate-Active enZYmes) family to which the enzyme belongs. CAZy is a
+    database that classifies enzymes involved in the synthesis, modification, and
+    degradation of carbohydrates
+    :param ec_number: The `ec_number` parameter is a string that represents the
+    Enzyme Commission (EC) number of the enzyme. The EC number is a numerical
+    classification system for enzymes based on the reactions they catalyze. It
+    consists of four numbers separated by periods, such as "1.1.1
+    :param protein_sequence: The parameter `protein_sequence` is a string that
+    represents the amino acid sequence of the enzyme protein
+    :param genbank_protein_id: The `genbank_protein_id` parameter is a string
+    that represents the GenBank assembly ID of the organism from which the enzyme
+    was obtained. GenBank is a database that provides annotated DNA sequences for
+    various organisms. The assembly ID refers to a specific version of the genome
+    assembly for a particular organism
+    :return: The function `store_enzyme` returns a tuple containing two elements.
+    The first element is a dictionary representing the data of the saved enzyme,
+    and the second element is either `None` if the enzyme was successfully saved or
+    an error object if an exception occurred during the saving process.
+    """
+
     try:
+
         saved_enzyme = EnzymeMetadata.create(
             enzyme_name=enzyme_name,
             ec_number=ec_number,
             article_doi=article_doi,
             cazy_family=cazy_family,
-            genbank_accession=genbank_accession,
-            refseq_accession=refseq_accession,
+            fungi_name=fungi_name,
+            protein_sequence=protein_sequence,
+            genbank_protein_id=genbank_protein_id,
         )
 
         return saved_enzyme.__data__, None
