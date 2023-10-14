@@ -15,6 +15,12 @@ from plasticome_metadata.controllers.plastic_controller import (
     get_all_plastics,
     get_plastic,
 )
+from plasticome_metadata.controllers.plastic_enzyme_controller import (
+    save_plastic_enzyme,
+    get_plastic_enzymes,
+    delete_plastic_enzyme,
+    get_all_plastic_enzyme
+)
 
 server = Flask(__name__)
 spec = FlaskPydanticSpec(
@@ -70,9 +76,26 @@ def update_plastic_route(id):
     return update_plastic(id, data)
 
 
+
 @server.delete('/plastic_delete/<int:id>')
 def delete_plastic_route(id):
     return delete_plastic(id)
+
+@server.get('/plastic_enzyme_find')
+def get_all_plastic_enzymes_route():
+    return get_all_plastic_enzyme()
+
+@server.post('/plastic_enzyme_save')
+def save_plastic_enzyme_route():
+    return save_plastic_enzyme(request.json)
+
+@server.get('/plastic_enzyme_find/<enzyme_id>')
+def get_plastic_enzymes_route(enzyme_id):
+    return get_plastic_enzymes(enzyme_id)
+
+@server.delete('/plastic_enzyme_delete/<int:enzyme_id>/<int:plastic_id>')
+def delete_plastic_enzyme_route(enzyme_id, plastic_id):
+    return delete_plastic_enzyme(enzyme_id, plastic_id)
 
 
 server.run()
