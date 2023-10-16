@@ -13,11 +13,10 @@ def add_plastic_type_to_enzyme(enzyme: str, plastic_type: str):
     except Exception as error:
         return None, error
 
-def remove_plastic_type_from_enzyme(enzyme: str, plastic_type: str):
+def remove_plastic_type_from_enzyme(registered_id: int):
     try:
         query = EnzymePlasticTypes.delete().where(
-            EnzymePlasticTypes.enzyme_id == enzyme,
-            EnzymePlasticTypes.plastic_id == plastic_type
+            EnzymePlasticTypes.id == registered_id
         )
         query.execute()
         return True, None

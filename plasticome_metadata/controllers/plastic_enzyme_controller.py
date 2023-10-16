@@ -52,9 +52,9 @@ def get_all_plastic_enzyme():
     except Exception as e:
         return {'error': f'Invalid data: {e}'}, 400
 
-def delete_plastic_enzyme(enzyme_id: int, plastic_id: str):
+def delete_plastic_enzyme(registered_id: int):
     try:
-        result, error = remove_plastic_type_from_enzyme(enzyme_id, plastic_id)
+        result, error = remove_plastic_type_from_enzyme(registered_id)
         if error:
             return {'error': str(error)}, 500
         if result:
