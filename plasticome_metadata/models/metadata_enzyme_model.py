@@ -7,9 +7,11 @@ class BaseModel(Model):
     class Meta:
         database = database
 
+
 class PlasticTypes(BaseModel):
     plastic_name = CharField()
     acronym = CharField()
+
 
 class EnzymeMetadata(BaseModel):
     cazy_family = CharField(null=True)
@@ -20,9 +22,12 @@ class EnzymeMetadata(BaseModel):
     article_doi = CharField(null=True)
     genbank_protein_id = CharField(null=True)
 
+
 class EnzymePlasticTypes(BaseModel):
     enzyme_id = ForeignKeyField(EnzymeMetadata, backref='enzyme_plastic_types')
-    plastic_id = ForeignKeyField(PlasticTypes, backref='plastic_associated_enzymes')
+    plastic_id = ForeignKeyField(
+        PlasticTypes, backref='plastic_associated_enzymes'
+    )
 
 
 # database.connect()

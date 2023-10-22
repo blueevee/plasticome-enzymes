@@ -1,13 +1,13 @@
 from plasticome_metadata.services.user_service import verify_credentials
 
+
 def authenticate_user(data: dict):
     try:
-        required_fields = [
-            'username',
-            'secret'
-        ]
+        required_fields = ['username', 'secret']
         if all(data.get(field) for field in required_fields):
-            result, error = verify_credentials(data['username'], data['secret'])
+            result, error = verify_credentials(
+                data['username'], data['secret']
+            )
             if error:
                 return {'error': str(error)}, 401
             return {'access_token': result}, 200

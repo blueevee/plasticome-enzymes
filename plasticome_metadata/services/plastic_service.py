@@ -49,7 +49,9 @@ def search_plastic_by_acronym(acronym: str):
         plastic (dict): The registered plastic.
     """
     try:
-        plastic = PlasticTypes.select().where(PlasticTypes.acronym == acronym).get()
+        plastic = (
+            PlasticTypes.select().where(PlasticTypes.acronym == acronym).get()
+        )
         return plastic.__data__, None
     except Exception as error:
         return None, error
@@ -69,7 +71,9 @@ def search_associated_enzymes_by_acronym(acronym: str):
     will be the `error` object that describes the error.
     """
     try:
-        plastic = PlasticTypes.select().where(PlasticTypes.acronym == acronym).get()
+        plastic = (
+            PlasticTypes.select().where(PlasticTypes.acronym == acronym).get()
+        )
         sequences = plastic.sequences
         return sequences, None
     except Exception as error:

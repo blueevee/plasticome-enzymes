@@ -3,7 +3,7 @@ from plasticome_metadata.services.plastic_service import (
     search_plastic_by_acronym,
     search_plastics,
     update_plastic_by_id,
-    delete_plastic_by_id
+    delete_plastic_by_id,
 )
 
 
@@ -22,10 +22,7 @@ def save_plastic(data: dict):
     the `store_plastic` function call, the function returns an error message along
     """
     try:
-        required_fields = [
-            'plastic_name',
-            'acronym'
-        ]
+        required_fields = ['plastic_name', 'acronym']
         if all(data.get(field) for field in required_fields):
             result, error = store_plastic(**data)
             if error:
@@ -40,6 +37,7 @@ def save_plastic(data: dict):
             }, 422
     except Exception as e:
         return {'error': f'Invalid data: {e}'}, 400
+
 
 def get_plastic(acronym: str):
     try:
@@ -101,10 +99,7 @@ def update_plastic(plastic_id: int, data: dict):
     keys:
     """
     try:
-        fields = [
-            'plastic_name',
-            'plastic_acronym',
-        ]
+        fields = ['plastic_name', 'plastic_acronym']
         formated_data = {
             key: value
             for key, value in data.items()
@@ -132,7 +127,7 @@ def delete_plastic(plastic_id: int):
     and value, along with an HTTP status code.
     """
     try:
-        _ , error = delete_plastic_by_id(plastic_id)
+        _, error = delete_plastic_by_id(plastic_id)
         if error:
             return {'error': str(error)}, 500
         return {'message': f'Record deleted'}, 200

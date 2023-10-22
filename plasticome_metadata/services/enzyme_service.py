@@ -1,12 +1,13 @@
 from plasticome_metadata.models.metadata_enzyme_model import EnzymeMetadata
 
+
 def store_enzyme(
     enzyme_name: str,
-    article_doi: str= None,
-    cazy_family: str= None,
-    ec_number: str= None,
-    protein_sequence: str= None,
-    genbank_protein_id: str= None,
+    article_doi: str = None,
+    cazy_family: str = None,
+    ec_number: str = None,
+    protein_sequence: str = None,
+    genbank_protein_id: str = None,
     fungi_name: str = None,
 ) -> (dict, None):
 
