@@ -9,6 +9,7 @@ from plasticome_metadata.controllers.enzyme_controller import (
     delete_enzyme,
     get_all_enzyme,
     get_enzyme,
+    get_enzyme_by_ec,
     save_enzyme,
     update_enzyme,
 )
@@ -55,6 +56,12 @@ def get_all_enzyme_route():
 @jwt_required(locations=['headers', 'cookies'])
 def get_enzyme_route(enzyme_id):
     return get_enzyme(enzyme_id)
+
+
+@server.get('/enzyme_find/ec/<ec_number>')
+@jwt_required(locations=['headers', 'cookies'])
+def get_enzyme_by_ec_route(ec_number):
+    return get_enzyme_by_ec(ec_number)
 
 
 @server.post('/enzyme_save')

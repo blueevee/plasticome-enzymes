@@ -1,6 +1,7 @@
 from plasticome_metadata.services.enzyme_service import (
     delete_enzyme_by_id,
     search_enzyme,
+    search_enzyme_by_ec_number,
     search_enzyme_by_id,
     store_enzyme,
     update_enzyme_by_id,
@@ -17,6 +18,21 @@ def get_enzyme(enzyme_id: str):
         else:
             return {
                 'error': 'Incomplete model, you must have to send a valid: `enzyme_id`'
+            }, 422
+    except Exception as e:
+        return {'error': f'Invalid data: {e}'}, 400
+
+
+def get_enzyme_by_ec(ec_number: str):
+    try:
+        if ec_number:
+            result, error = search_enzyme_by_ec_number(ec_number)
+            if error:
+                return {'error': 'enzyme not found'}, 404
+            return result, 200
+        else:
+            return {
+                'error': 'Incomplete model, you must have to send a valid: `ec_number`'
             }, 422
     except Exception as e:
         return {'error': f'Invalid data: {e}'}, 400
