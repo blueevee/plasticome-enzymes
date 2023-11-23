@@ -70,12 +70,12 @@ def search_enzyme_by_ec_number(ec_number: str):
         enzyme (dict): The registered enzyme.
     """
     try:
-        enzyme = (
+        enzymes = (
             EnzymeMetadata.select()
             .where(EnzymeMetadata.ec_number == ec_number)
-            .get()
         )
-        return enzyme.__data__, None
+        enzyme_list = [enzyme.__data__ for enzyme in enzymes]
+        return enzyme_list, None
     except Exception as error:
         return None, error
 
