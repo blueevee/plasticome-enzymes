@@ -38,7 +38,7 @@ def get_plastic_types_for_enzyme(enzyme: str):
     try:
 
         query = (
-            EnzymePlasticTypes.select(EnzymePlasticTypes, PlasticTypes.acronym)
+            EnzymePlasticTypes.select(EnzymePlasticTypes, PlasticTypes.plastic_name)
             .join(
                 PlasticTypes,
                 on=(EnzymePlasticTypes.plastic_id == PlasticTypes.id),
@@ -47,7 +47,7 @@ def get_plastic_types_for_enzyme(enzyme: str):
         )
 
         plastic_types = [
-            {'plastic': result.plastic_id.acronym} for result in query
+            {'plastic': result.plastic_id.plastic_name} for result in query
         ]
 
         return plastic_types, None
@@ -65,6 +65,7 @@ def get_all_plastic_types_enzyme():
                 EnzymeMetadata.id.alias('enzyme_id'),
                 EnzymeMetadata.enzyme_name,
                 PlasticTypes.acronym.alias('plastic_acronym'),
+                PlasticTypes.plastic_name,
             )
             .join(
                 EnzymeMetadata,
