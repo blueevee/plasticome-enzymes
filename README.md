@@ -5,7 +5,7 @@
 
 # 🍄 PLASTICOME ENZYMES 🍄
 ![1.0.0][python-image] ![1.0.0][poetry-image]
-### Base de dados para armazenar informações referentes à ferramenta plasticome incluindo enzimas com atividade comprovada na degradação de plástico e seus metadados. Plasticome além dessa base de dados também é composta por uma API, [plasticome-backend](https://github.com/G2BC/plasticome-backend) que faz as análises recebidas pelo, [plasticome-frontend](https://github.com/G2BC/plasticome-frontend).
+### Base de dados para armazenar informações referentes à ferramenta plasticome incluindo enzimas com atividade comprovada na degradação de plástico e seus metadados. Plasticome além dessa base de dados também é composta por uma API, [plasticome-backend](https://github.com/blueevee/plasticome-backend) que faz as análises recebidas pelo, [plasticome-frontend](https://github.com/blueevee/plasticome-frontend).
 
 
 ## 💙 Notas da desenvolvedora:
