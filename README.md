@@ -18,12 +18,12 @@ Essa é uma api para lidar com a base de dados nesse caso a escolhida foi Postgr
 3. Crie o ambiente virtual do poetry na raiz do projeto com `poetry shell`
 4. Instale as dependências com `poetry install`
 5. Tenha uma base de dados postgres disponível localmente ou em nuvem como (https://www.elephantsql.com/)
-6. Duplique o arquivo [.env.example](/plasticome-metadata/.env.example)
+6. Duplique o arquivo [.env.example](/.env.example)
 7. Apaque o sufixo `.example` e preencha nesse arquivo todas as informações necessárias 
-8. Descomente as linhas 33, 34 e 35 do arquivo [`metadata_enzyme_model.py`](/plasticome-metadata/plasticome_metadata/models/metadata_enzyme_model.py) e rode o arquivo para que as tabelas das enzimas sejam criadas
-9. Descomente as linhas 16,17 e 18 do arquivo [`user_model.py`](/plasticome-metadata/plasticome_metadata/models/user_model.py) e rode o arquivo para que a tabela de usuários seja criada
+8. Descomente as linhas 33, 34 e 35 do arquivo [`metadata_enzyme_model.py`](/plasticome_metadata/models/metadata_enzyme_model.py) e rode o arquivo para que as tabelas das enzimas sejam criadas
+9. Descomente as linhas 16,17 e 18 do arquivo [`user_model.py`](/plasticome_metadata/models/user_model.py) e rode o arquivo para que a tabela de usuários seja criada
 10. Certifique-se que todas as tabelas foram devidamente criadas
-11. Execute a função `create_user` do arquivo [`user_service.py`](/plasticome-metadata/plasticome_metadata/services/user_service.py), passando como parâmetros o usuário e a senha desejada, a função já fará o hash da senha antes de salvar no banco.
+11. Execute a função `create_user` do arquivo [`user_service.py`](/plasticome_metadata/services/user_service.py), passando como parâmetros o usuário e a senha desejada, a função já fará o hash da senha antes de salvar no banco.
 12. Com o usuário criado, você pode usar a rota de autenticação e conseguir o token que dará acesso à outras rotas como consulta às enzimas do banco, e até as análises do plasticome-backend
 
 
